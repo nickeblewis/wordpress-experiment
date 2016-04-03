@@ -4,8 +4,8 @@
 
 Clone the repository to your local directory
 ```bash
-$ git clone https://github.com/nickeblewis/wordpress-graphql-relay.git
-$ cd wordpress-graphql-relay
+$ git clone https://github.com/nickeblewis/wordpress-experiment.git
+$ cd wordpress-experiment
 ```
 
 Install all dependencies & Start developing
