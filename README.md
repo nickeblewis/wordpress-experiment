@@ -16,7 +16,7 @@ $ npm start
 
 ## Demo
 
-`https://wgr.herokuapp.com` to see this app in action :-)
+`https://wordpress-experiment.herokuapp.com` to see this app in action :-)
 
 Launch your favorite web browser and go to `http://localhost:3000` for Relay application or `http://localhost:8000` for GraphiQL.
 
