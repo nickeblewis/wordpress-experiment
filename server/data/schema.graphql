@@ -1,18 +1,5 @@
-type Feature implements Node {
-  id: ID!
-  name: String
-  description: String
-  url: String
-}
-
-type FeatureConnection {
-  pageInfo: PageInfo!
-  edges: [FeatureEdge]
-}
-
-type FeatureEdge {
-  node: Feature
-  cursor: String!
+type Excerpt {
+  rendered: String
 }
 
 interface Node {
@@ -26,14 +13,37 @@ type PageInfo {
   endCursor: String
 }
 
+type Post implements Node {
+  id: ID!
+  title: Title
+  excerpt: Excerpt
+  slug: String
+  link: String
+  type: String
+}
+
+type PostConnection {
+  pageInfo: PageInfo!
+  edges: [PostEdge]
+}
+
+type PostEdge {
+  node: Post
+  cursor: String!
+}
+
 type Query {
   node(id: ID!): Node
   viewer: User
 }
 
+type Title {
+  rendered: String
+}
+
 type User implements Node {
   id: ID!
-  features(after: String, first: Int, before: String, last: Int): FeatureConnection
+  posts(after: String, first: Int, before: String, last: Int): PostConnection
   username: String
   website: String
 }

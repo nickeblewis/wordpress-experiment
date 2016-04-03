@@ -45,11 +45,10 @@ module.exports = {
       }
     }),
     new HtmlWebpackPlugin({
-      title: 'Relay Starter Kit - Integrated with Relay, GraphQL, Express, ES6/ES7, JSX, Webpack, Babel, Material Design Lite, and PostCSS',
+      title: 'Wordpress Graphql Relay - Integrated with Relay, GraphQL, Express, ES6/ES7, JSX, Webpack, Babel, Material Design Lite, and PostCSS',
       template: './client/index.html',
       mobile: true,
       inject: false
     })
   ]
 };
-

@@ -1,3 +1,14 @@
+import fetch from 'node-fetch';
+import config from '../config/environment';
+
+class Post {
+  constructor(id, slug, link) {
+    this.id = id;
+    this.slug = slug;
+    this.link =link;
+  }
+}
+
 class User {
   constructor(id, name, username, website) {
     this.id = id;
@@ -7,44 +18,35 @@ class User {
   }
 }
 
-class Feature {
-  constructor(id, name, description, url) {
-    this.id = id;
-    this.name = name;
-    this.description = description;
-    this.url = url;
-  }
+let lastFetchTask;
+let posts = [];
+let url = config.url;
+
+lastFetchTask = fetch(url)
+  .then(res => res.json())
+  .then(data => {
+    posts = data;
+    return posts;
+  })
+
+const nlewis = new User('1', 'Nick Lewis', 'nickeblewis', 'http://twitter.com');
+
+function getPost(id) {
+  return posts.find(p => p.id === id)
 }
 
-const lvarayut = new User('1', 'Varayut Lerdkanlayanawat', 'lvarayut', 'https://github.com/lvarayut/relay-fullstack');
-const features = [
-  new Feature('1', 'React', 'A JavaScript library for building user interfaces.', 'https://facebook.github.io/react'),
-  new Feature('2', 'Relay', 'A JavaScript framework for building data-driven react applications.', 'https://facebook.github.io/relay'),
-  new Feature('3', 'GraphQL', 'A reference implementation of GraphQL for JavaScript.', 'http://graphql.org'),
-  new Feature('4', 'Express', 'Fast, unopinionated, minimalist web framework for Node.js.', 'http://expressjs.com'),
-  new Feature('5', 'Webpack', 'Webpack is a module bundler that packs modules for the browser.', 'https://webpack.github.io'),
-  new Feature('6', 'Babel', 'Babel is a JavaScript compiler. Use next generation JavaScript, today.', 'https://babeljs.io'),
-  new Feature('7', 'PostCSS', 'PostCSS. A tool for transforming CSS with JavaScript.', 'http://postcss.org'),
-  new Feature('8', 'MDL', 'Material Design Lite lets you add a Material Design to your websites.', 'http://www.getmdl.io')
-];
-
+function getPosts() {
+  return posts;
+}
 
 function getUser(id) {
-  return id === lvarayut.id ? lvarayut : null;
-}
-
-function getFeature(id) {
-  return features.find(w => w.id === id);
-}
-
-function getFeatures() {
-  return features;
+  return id === nlewis.id ? nlewis : null;
 }
 
 export {
   User,
-  Feature,
+  Post,
   getUser,
-  getFeature,
-  getFeatures
+  getPost,
+  getPosts
 };

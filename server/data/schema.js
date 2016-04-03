@@ -23,10 +23,10 @@ import {
 
 import {
   User,
-  Feature,
+  Post,
   getUser,
-  getFeature,
-  getFeatures
+  getPost,
+  getPosts
 } from './database';
 
 
@@ -41,16 +41,16 @@ const { nodeInterface, nodeField } = nodeDefinitions(
     const { type, id } = fromGlobalId(globalId);
     if (type === 'User') {
       return getUser(id);
-    } else if (type === 'Feature') {
-      return getFeature(id);
+    } else if (type === 'Post') {
+      return getPost(id);
     }
     return null;
   },
   (obj) => {
     if (obj instanceof User) {
       return userType;
-    } else if (obj instanceof Feature) {
-      return featureType;
+    } else if (obj instanceof Post) {
+      return postType;
     }
     return null;
   }
@@ -65,11 +65,11 @@ const userType = new GraphQLObjectType({
   description: 'A person who uses our app',
   fields: () => ({
     id: globalIdField('User'),
-    features: {
-      type: featureConnection,
-      description: 'Features that I have',
+    posts: {
+      type: postConnection,
+      description: 'My lovingly crafted posts',
       args: connectionArgs,
-      resolve: (_, args) => connectionFromArray(getFeatures(), args)
+      resolve: (_, args) => connectionFromArray(getPosts(), args)
     },
     username: {
       type: GraphQLString,
@@ -83,22 +83,48 @@ const userType = new GraphQLObjectType({
   interfaces: [nodeInterface]
 });
 
-const featureType = new GraphQLObjectType({
-  name: 'Feature',
-  description: 'Feature integrated in our starter kit',
+const TitleType = new GraphQLObjectType({
+  name: 'Title',
+  fields: {
+    rendered: {
+      type: GraphQLString
+    }
+  }
+});
+
+const ExcerptType = new GraphQLObjectType({
+  name: 'Excerpt',
+  fields: {
+    rendered: {
+      type: GraphQLString
+    }
+  }
+});
+
+const postType = new GraphQLObjectType({
+  name: 'Post',
+  description: 'Post integrated in our starter kit',
   fields: () => ({
-    id: globalIdField('Feature'),
-    name: {
-      type: GraphQLString,
-      description: 'Name of the feature'
+    id: globalIdField('Post'),
+    title: {
+      type: TitleType,
+      description: 'Our blog post title'
     },
-    description: {
-      type: GraphQLString,
-      description: 'Description of the feature'
+    excerpt: {
+      type: ExcerptType,
+      description: 'Brief synopsis of what the post is about'
     },
-    url: {
+    slug: {
       type: GraphQLString,
-      description: 'Url of the feature'
+      description: 'The post slug'
+    },
+    link: {
+      type: GraphQLString,
+      description: 'The good old link sunshine'
+    },
+    type: {
+      type: GraphQLString,
+      description: 'The type of post that this chap is'
     }
   }),
   interfaces: [nodeInterface]
@@ -107,7 +133,7 @@ const featureType = new GraphQLObjectType({
 /**
  * Define your own connection types here
  */
-const { connectionType: featureConnection } = connectionDefinitions({ name: 'Feature', nodeType: featureType });
+const { connectionType: postConnection } = connectionDefinitions({ name: 'Post', nodeType: postType });
 
 /**
  * This is the type that will be the root of our query,

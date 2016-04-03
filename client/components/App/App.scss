@@ -1,6 +1,9 @@
 @import '../../../node_modules/normalize.css/normalize.css';
 @import '../../../node_modules/react-mdl/extra/css/material.cyan-red.min.css';
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/icon?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en');
+@import url('https://code.getmdl.io/1.0.6/material.grey-pink.min.css');
+@import '../styles.css';
 @import '../variables.scss';
 
 .app {
@@ -22,7 +25,7 @@ h2 {
 .greeting {
   text-align: center;
   padding-top: 50px;
-  height: 330px;
+  height: 130px;
   color: $white;
   background-color: $blue;
 }

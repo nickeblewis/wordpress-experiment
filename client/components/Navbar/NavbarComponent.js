@@ -5,7 +5,7 @@ import './Navbar.scss';
 
 export default class Navbar extends React.Component {
   render() {
-    const title = 'Relay Fullstack';
+    const title = 'nicklewis.tech';
     return (
       <Layout>
         <Header title={<Link to='/'>{title}</Link>} scroll>
@@ -24,4 +24,3 @@ export default class Navbar extends React.Component {
     );
   }
 }
-

@@ -14,9 +14,8 @@ export default class App extends React.Component {
       <div className='app'>
         <Navbar />
         <div className='greeting'>
-          <h1>Sawasdee, Sawasdee!</h1>
-          <p>Always a pleasure scaffolding your apps</p>
-          <img src={require('../../assets/yeoman.png')} />
+          <h1>Wordpress Experiment</h1>
+          <p>Working out how to build a JS site that is built with Relay, React, GraphQL and connects to a Wordpress site and its REST API...</p>
         </div>
         <div className='content'>
           {this.props.children}
@@ -26,4 +25,3 @@ export default class App extends React.Component {
     );
   }
 }
-

@@ -6,6 +6,8 @@
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="" <% if(htmlWebpackPlugin.files.manifest) { %> manifest="<%= htmlWebpackPlugin.files.manifest %>"<% } %>> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Demo of Wordpress to Relay">
   <title><%= htmlWebpackPlugin.options.title || 'Webpack App'%></title>
 
   <% if (htmlWebpackPlugin.files.favicon) { %>
@@ -70,5 +72,6 @@
   <% } %>
 </script>
 <% } %>
+<script src="https://code.getmdl.io/1.0.6/material.min.js"></script>
 </body>
 </html>
